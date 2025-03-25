@@ -5,7 +5,7 @@
   <title>Login</title>
 </head>
 <body>
-<form action="LoginAction" method="post">
+<form action="LoginAction.do" method="post">
   <label>Username :</label>
   <input type="text" name="username" required/><br/>
   <label>Password :</label>

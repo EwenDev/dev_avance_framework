@@ -9,6 +9,6 @@
 </h1>
 <br/>
 <a href="hello-servlet">Hello Servlet</a>
-<% response.sendRedirect("ActionDebut"); %>
+<% response.sendRedirect("ActionDebut.do"); %>
 </body>
 </html>
