@@ -6,12 +6,12 @@
          version="5.0">
 
     <servlet>
-        <servlet-name>DispatcherServlet</servlet-name>
+        <servlet-name>titi</servlet-name>
         <servlet-class>org.example.dev_avance_framework.controllers.DispatcherServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>DispatcherServlet</servlet-name>
+        <servlet-name>titi</servlet-name>
         <url-pattern>*.do</url-pattern>
     </servlet-mapping>
 
