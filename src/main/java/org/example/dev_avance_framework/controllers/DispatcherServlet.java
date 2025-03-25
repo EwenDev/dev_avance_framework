@@ -2,7 +2,6 @@ package org.example.dev_avance_framework.controllers;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +11,6 @@ import org.example.dev_avance_framework.actions.ActionUn;
 import org.example.dev_avance_framework.actions.LoginAction;
 import org.example.dev_avance_framework.actions.LogoutAction;
 
-@WebServlet(name = "DispatcherServlet", urlPatterns = {"*.do"})
 public class DispatcherServlet extends HttpServlet {
 
     private Map<String, Class<? extends Action>> actionMap = new HashMap<>();
