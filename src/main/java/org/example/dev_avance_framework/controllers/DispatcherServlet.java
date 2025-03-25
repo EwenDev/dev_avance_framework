@@ -3,33 +3,27 @@ package org.example.dev_avance_framework.controllers;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 import org.example.dev_avance_framework.actions.Action;
-import org.example.dev_avance_framework.actions.ActionDebut;
-import org.example.dev_avance_framework.actions.ActionUn;
-import org.example.dev_avance_framework.actions.LoginAction;
-import org.example.dev_avance_framework.actions.LogoutAction;
+import org.example.dev_avance_framework.factory.MyFactory;
 
 public class DispatcherServlet extends HttpServlet {
 
-    private Map<String, Class<? extends Action>> actionMap = new HashMap<>();
+    private Map<String, Class<? extends Action>> actionMap;
 
     @Override
     public void init() throws ServletException {
-        actionMap.put("ActionDebut", ActionDebut.class);
-        actionMap.put("ActionUn", ActionUn.class);
-        actionMap.put("LoginAction", LoginAction.class);
-        actionMap.put("LogoutAction", LogoutAction.class);
+        // Utilisation de la factory pour créer la map d'actions
+        actionMap = MyFactory.createActionMap();
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -40,13 +34,13 @@ public class DispatcherServlet extends HttpServlet {
         Action action = null;
         String view = "";
 
-        // Récupération de la classe associée dans la map
+        // Récupération de la classe associée dans la map via la factory
         Class<? extends Action> actionClass = actionMap.get(actionName);
         if(actionClass != null) {
             try {
-                // Instanciation de l'action
+                // Instanciation dynamique de l'action
                 action = actionClass.newInstance();
-                // Exécution de l'action qui retourne l'URL de la vue
+                // Exécution de l'action pour récupérer l'URL de la vue
                 view = action.execute(request, response);
             } catch (InstantiationException | IllegalAccessException e) {
                 throw new ServletException("Erreur lors de l'instanciation de l'action : " + actionName, e);
