@@ -19,12 +19,21 @@ public class MyFactory {
             NodeList nodes = doc.getElementsByTagName("action");
             for (int i = 0; i < nodes.getLength(); i++) {
                 Element elem = (Element) nodes.item(i);
-                String name  = elem.getAttribute("name");
-                String cls   = elem.getAttribute("class");
-                @SuppressWarnings("unchecked")
-                Class<? extends Action> actionClass =
-                        (Class<? extends Action>) Class.forName(cls);
-                actionMap.put(name, actionClass);
+                String name = elem.getAttribute("name");
+                String cls  = elem.getAttribute("class");
+                try {
+                    Class<?> raw = Class.forName(cls);
+                    // Vérifie que la classe implémente bien Action
+                    if (!Action.class.isAssignableFrom(raw)) {
+                        context.log("MyFactory: la classe " + cls + " n'implémente pas Action");
+                        continue;
+                    }
+                    @SuppressWarnings("unchecked")
+                    Class<? extends Action> actionClass = (Class<? extends Action>) raw;
+                    actionMap.put(name, actionClass);
+                } catch (ClassNotFoundException e) {
+                    context.log("MyFactory: classe introuvable pour l'action '" + name + "' -> " + cls, e);
+                }
             }
         } catch (Exception e) {
             throw new RuntimeException("Impossible de charger actions-config.xml", e);
