@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+    <action name="ActionDebut" class="org.example.dev_avance_framework.actions.ActionDebut"/>
+    <action name="LoginAction" class="org.example.dev_avance_framework.actions.LoginAction"/>
+    <action name="ActionUn" class="org.example.dev_avance_framework.actions.ActionUn"/>
+    <action name="LogoutAction" class="org.example.dev_avance_framework.actions.LogoutAction"/>
+    <action name="CheckAttributesAction" class="org.example.dev_avance_framework.actions.CheckAttributesAction"/>
+</actions>
