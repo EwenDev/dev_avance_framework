@@ -2,6 +2,10 @@ package org.example.dev_avance_framework.beans;
 
 import java.io.Serializable;
 
+/**
+ * UserBean est une classe qui représente un utilisateur dans l'application.
+ * Elle implémente Serializable pour permettre la sérialisation de l'objet.
+ */
 public class UserBean implements Serializable {
     private String username;
     private String attribut1;
