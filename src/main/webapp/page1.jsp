@@ -6,6 +6,7 @@
         response.sendRedirect("login.jsp");
         return;
     }
+    String error = (String) request.getAttribute("errorMessage");
 %>
 <!DOCTYPE html>
 <html>
@@ -15,9 +16,15 @@
 <body>
 <h1>Bienvenue, <%= user.getUsername() %>!</h1>
 
-<c:if test="${not empty errorMessage}">
-    <p style="color:red;"><%= request.getAttribute("errorMessage") %></p>
-</c:if>
+<%
+    if (error != null && !error.isEmpty()) {
+%>
+<script>
+    alert('<%= error.replace("'", "\\'") %>');
+</script>
+<%
+    }
+%>
 
 <form action="CheckAttributesAction.do" method="post">
     <label>Attribut 1 :</label>
