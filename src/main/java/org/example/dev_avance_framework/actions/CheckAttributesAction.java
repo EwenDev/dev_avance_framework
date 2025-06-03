@@ -32,13 +32,14 @@ public class CheckAttributesAction implements Action {
 
             // Récupération de l'utilisateur depuis la session
             UserBean user = (UserBean) session.getAttribute("user");
+            // Vérification si l'utilisateur existe dans la session puis mise à jour de ses attributs
             if (user != null) {
                 user.setAttribut1(attr1);
                 user.setAttribut2(attr2);
             }
         }
 
-        // Redirection vers la "on commence à travailler"
+        // Redirection vers la page "on commence à travailler"
         return "working.jsp";
     }
 }

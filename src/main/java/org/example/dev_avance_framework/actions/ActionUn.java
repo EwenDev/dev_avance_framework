@@ -16,7 +16,7 @@ public class ActionUn implements Action {
         // Récupération de la session et de l'utilisateur
         HttpSession session = request.getSession();
 
-        // Mise à jour des attributs de l'utilisateur
+        // Récupération de l'utilisateur depuis la session
         UserBean user = (UserBean) session.getAttribute("user");
 
         // Vérification si l'utilisateur existe dans la session
